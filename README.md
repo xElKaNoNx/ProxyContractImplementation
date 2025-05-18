@@ -224,7 +224,7 @@ $ forge script script/DeployProxy.s.sol:UpgradeProxyScript --rpc-url $RPC_URL --
 ```bash
 # Install
 git clone https://github.com/oumaoumag/ProxyContractImplementation.git
-cd proxy-contract-implementation
+cd ProxyContractImplementation
 forge install
 
 # Build and test
