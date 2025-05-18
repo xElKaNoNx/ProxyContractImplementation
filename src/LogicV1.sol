@@ -5,5 +5,10 @@ contract LogicV1 {
     // State variable stored in the proxy's storage
     uint256 public value;
 
+    // Function to set the value
+    function setValue(uint256 newValue) external {
+        value = newValue;
+    }
+
     
 }
