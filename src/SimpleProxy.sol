@@ -27,6 +27,13 @@ contract SimpleProxy {
         }
     }
 
+    // Function to get the current implementation address
+    function getImplementation() public view returns (address impl) {
+        assembly {
+            impl := sload(IMPLEMENTATION_SLOT)
+        }
+    }
+
    
 
 }
