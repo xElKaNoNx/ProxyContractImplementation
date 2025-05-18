@@ -34,6 +34,24 @@ contract SimpleProxy {
         }
     }
 
-   
+    // Fallback function to delegate calls to the implementation
+    fallback() external payable {
+        address impl = getImplementation();
+        require(impl != address(0), "Implementation not set");
+        assembly {
+            // Copy calldata to memory
+            let ptr := mload(0x40)
+            calldatacopy(ptr, 0, calldatasize())
+            // Delegatecall to the implementation
+            let result := delegatecall(gas(), impl, ptr, calldatasize(), 0, 0)
+            // Copy returndata to memory
+            let size := returndatasize()
+            returndatacopy(ptr, 0, size)
+            // Revert or return based on the result
+            switch result
+            case 0 { revert(ptr, size) }
+            default { return(ptr, size) }
+        }
+    }
 
 }
