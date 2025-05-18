@@ -1,3 +1,20 @@
+# Compiler files
+cache/
+out/
+
+# Ignores development broadcast logs
+!/broadcast
+/broadcast/*/31337/
+/broadcast/**/dry-run/
+
+# Docs
+docs/
+
+# Dotenv file
+.env
+.env.local
+.env.*
+
 # Remix compiler artifacts
 **/artifacts/
 **/artifacts/**
@@ -10,6 +27,30 @@ states/
 *.dbg.json
 *.tsbuildinfo
 
-# Optional
-.env
-.env.local
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Node.js dependencies
+node_modules/
+package-lock.json
+yarn.lock
+
+# Coverage
+coverage/
+coverage.json
+lcov.info
+
+# Hardhat files
+artifacts/
+typechain/
+typechain-types/
+
+# Logs
+*.log
