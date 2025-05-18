@@ -195,7 +195,20 @@ $ forge test
 ### Deploy
 
 ```shell
-$ forge script script/DeployProxy.s.sol:DeployProxyScript --rpc-url <your_rpc_url> --private-key <your_private_key>
+$ forge script script/DeployProxy.s.sol:DeployProxyScript --rpc-url $RPC_URL --private-key $PRIVATE_KEY --broadcast
+```
+
+#### Deployment Example
+
+```
+LogicV1 deployed at: 0x350AECDbcaA3557bda602786b0D831655A53ec1D
+Proxy deployed at: 0x844d5b937883bae08cA7CaA99Bc66258cBD2fC56
+```
+
+### Upgrade
+
+```shell
+$ forge script script/DeployProxy.s.sol:UpgradeProxyScript --rpc-url $RPC_URL --private-key $PRIVATE_KEY --broadcast
 ```
 
 ## References
