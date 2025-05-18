@@ -36,6 +36,41 @@ EIP-1967 defines specific storage slots for critical proxy information:
 
 These slots are chosen to minimize the risk of collisions with the implementation contract's storage.
 
+### How EIP-1967 Prevents Storage Collisions
+
+In Solidity, storage slots are assigned sequentially starting from slot 0 for state variables. This creates a risk of collision between proxy and implementation contracts if they use the same slots for different purposes.
+
+EIP-1967 solves this by:
+
+1. Using cryptographically secure, random-looking slots derived from a namespaced hash
+2. Subtracting 1 from the hash to further reduce collision probability
+3. Ensuring these slots are extremely unlikely to be used by normal contract variables
+
+For example, the implementation address is stored at a slot derived from `keccak256('eip1967.proxy.implementation')` minus 1, which produces a value that's practically impossible to collide with normal variable storage.
+
+### Visual Representation of Proxy Pattern
+
+```
+User ──► Proxy Contract ─┬─► Implementation V1
+                         │    (can be upgraded)
+                         │
+                         └─► Storage
+                              (remains unchanged)
+```
+
+After upgrade:
+
+```
+User ──► Proxy Contract ─┬─X Implementation V1
+                         │    (no longer used)
+                         │
+                         ├─► Implementation V2
+                         │    (new logic)
+                         │
+                         └─► Storage
+                              (preserved)
+```
+
 ## How Proxy Patterns Work
 
 ### Delegation Mechanism
@@ -73,14 +108,59 @@ This repository includes:
    - All functionality from V1
    - Additional feature to decrement the counter
 
+## Comparison with Other Proxy Patterns
+
+There are several proxy patterns in Ethereum, each with its own advantages and trade-offs:
+
+### 1. Transparent Proxy Pattern
+
+**Key Differences from EIP-1967:**
+- Uses a different approach to avoid function selector clashes
+- Admin-specific logic is in the proxy itself, not in a separate contract
+- Less gas efficient for regular users due to additional checks
+
+### 2. UUPS (Universal Upgradeable Proxy Standard - EIP-1822)
+
+**Key Differences from EIP-1967:**
+- Upgrade logic is in the implementation contract, not the proxy
+- More gas efficient for users
+- Requires each implementation to include upgrade logic
+- Cannot be "bricked" by deploying an implementation without upgrade code
+
+### 3. Diamond Pattern (EIP-2535)
+
+**Key Differences from EIP-1967:**
+- Allows multiple implementation contracts (facets) simultaneously
+- More complex but more flexible
+- Better suited for large contracts that need to be split up
+
+### Why Choose EIP-1967?
+
+EIP-1967 is often preferred because:
+- It's simpler to understand and implement than Diamond
+- It's more standardized and widely adopted than custom proxy patterns
+- It's more gas efficient than Transparent Proxies
+- It separates admin logic from implementation logic, unlike UUPS
+
 ## Security Considerations
 
 When using proxy patterns, be aware of these security concerns:
 
 1. **Storage Collisions**: Implementation contracts must be careful not to use the same storage slots as the proxy
+   - EIP-1967 mitigates this by using specific storage slots derived from hashes
+   - Always maintain the same storage layout in upgraded implementations
+
 2. **Function Selector Clashes**: Proxy and implementation functions can clash if they have the same selector
+   - This happens when a function in the implementation has the same 4-byte signature as a proxy function
+   - Can lead to proxy admin functions being inaccessible
+
 3. **Initialization**: Implementation contracts should use initializer functions instead of constructors
+   - Constructors are executed only when the implementation is deployed, not when used through a proxy
+   - Always use a one-time initialization pattern with a guard against re-initialization
+
 4. **Access Control**: Only authorized addresses should be able to upgrade the implementation
+   - A compromised admin key can lead to malicious upgrades
+   - Consider using multi-signature wallets or timelocks for admin functions
 
 ## Usage
 
@@ -123,3 +203,4 @@ $ forge script script/DeployProxy.s.sol:DeployProxyScript --rpc-url <your_rpc_ur
 - [EIP-1967: Standard Proxy Storage Slots](https://eips.ethereum.org/EIPS/eip-1967)
 - [OpenZeppelin Upgrades Documentation](https://docs.openzeppelin.com/upgrades/2.3/)
 - [Solidity Documentation](https://docs.soliditylang.org/en/v0.8.19/)
+- [ConsenSys Best Practices for Smart Contract Systems](https://consensys.github.io/smart-contract-best-practices/)
