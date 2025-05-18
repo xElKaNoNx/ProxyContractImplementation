@@ -20,5 +20,13 @@ contract SimpleProxy {
         owner = msg.sender;
     }
 
- 
+    // Function to set the implementation address
+    function setImplementation(address newImplementation) external onlyOwner {
+        assembly {
+            sstore(IMPLEMENTATION_SLOT, newImplementation)
+        }
+    }
+
+   
+
 }
