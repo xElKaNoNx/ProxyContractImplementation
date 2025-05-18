@@ -15,5 +15,10 @@ contract SimpleProxy {
         _;
     }
 
-   
+    // Constructor sets the deployer as the owner
+    constructor() {
+        owner = msg.sender;
+    }
+
+ 
 }
