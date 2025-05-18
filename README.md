@@ -218,6 +218,26 @@ $ forge script script/DeployProxy.s.sol:UpgradeProxyScript --rpc-url $RPC_URL --
 - [Solidity Documentation](https://docs.soliditylang.org/en/v0.8.19/)
 - [ConsenSys Best Practices for Smart Contract Systems](https://consensys.github.io/smart-contract-best-practices/)
 
+
+## Getting Started
+
+```bash
+# Install
+git clone https://github.com/oumaoumag/ProxyContractImplementation.git
+cd proxy-contract-implementation
+forge install
+
+# Build and test
+forge build
+forge test -v
+```
+
+## Troubleshooting
+
+- **Compilation**: Use Solidity ^0.8.13, try `forge clean`
+- **Tests**: Run `foundryup` to update Foundry
+- **Deployment**: Check RPC endpoint and account balanc
+  
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
@@ -225,4 +245,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 Copyright (c) 2025 Ouma Ouma
 
 This implementation of the EIP-1967 proxy pattern is provided as an educational resource and may be freely used in your own projects according to the terms of the MIT License.
-
