@@ -10,5 +10,8 @@ contract LogicV1 {
         value = newValue;
     }
 
-    
+    // Function to get the value
+    function getValue() external view returns (uint256) {
+        return value;
+    }
 }
